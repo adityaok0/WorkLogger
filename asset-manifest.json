@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/worklogger/static/css/main.8b0c0448.chunk.css",
+    "main.js": "/worklogger/static/js/main.380d9798.chunk.js",
+    "main.js.map": "/worklogger/static/js/main.380d9798.chunk.js.map",
+    "runtime-main.js": "/worklogger/static/js/runtime-main.6c4d60f6.js",
+    "runtime-main.js.map": "/worklogger/static/js/runtime-main.6c4d60f6.js.map",
+    "static/css/2.4c97ca4f.chunk.css": "/worklogger/static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.b146bfc0.chunk.js": "/worklogger/static/js/2.b146bfc0.chunk.js",
+    "static/js/2.b146bfc0.chunk.js.map": "/worklogger/static/js/2.b146bfc0.chunk.js.map",
+    "static/js/3.bf71a11a.chunk.js": "/worklogger/static/js/3.bf71a11a.chunk.js",
+    "static/js/3.bf71a11a.chunk.js.map": "/worklogger/static/js/3.bf71a11a.chunk.js.map",
+    "index.html": "/worklogger/index.html",
+    "static/css/2.4c97ca4f.chunk.css.map": "/worklogger/static/css/2.4c97ca4f.chunk.css.map",
+    "static/css/main.8b0c0448.chunk.css.map": "/worklogger/static/css/main.8b0c0448.chunk.css.map",
+    "static/js/2.b146bfc0.chunk.js.LICENSE.txt": "/worklogger/static/js/2.b146bfc0.chunk.js.LICENSE.txt",
+    "static/media/email.4292add7.svg": "/worklogger/static/media/email.4292add7.svg",
+    "static/media/eye.c39e4d97.svg": "/worklogger/static/media/eye.c39e4d97.svg",
+    "static/media/leftArrow.77a33163.svg": "/worklogger/static/media/leftArrow.77a33163.svg",
+    "static/media/lock.1e9a62b2.svg": "/worklogger/static/media/lock.1e9a62b2.svg",
+    "static/media/openArrow.c4d6ceb6.svg": "/worklogger/static/media/openArrow.c4d6ceb6.svg",
+    "static/media/plus.dbe19ee2.svg": "/worklogger/static/media/plus.dbe19ee2.svg",
+    "static/media/power.4e2f147a.svg": "/worklogger/static/media/power.4e2f147a.svg",
+    "static/media/smallLogo.f40da20d.svg": "/worklogger/static/media/smallLogo.f40da20d.svg",
+    "static/media/switchon.93192c54.svg": "/worklogger/static/media/switchon.93192c54.svg",
+    "static/media/trend.8ab64a6f.svg": "/worklogger/static/media/trend.8ab64a6f.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6c4d60f6.js",
+    "static/css/2.4c97ca4f.chunk.css",
+    "static/js/2.b146bfc0.chunk.js",
+    "static/css/main.8b0c0448.chunk.css",
+    "static/js/main.380d9798.chunk.js"
+  ]
+}
