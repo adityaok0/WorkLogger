@@ -1,6 +1,6 @@
 {
-  "name": "switchon_mock_up",
-  "homepage": "http://adityaok0.github.io/WorkLogger",
+  "name": "work_logger",
+  "homepage": "http://adityaok0.github.io/worklogger",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
