@@ -161,7 +161,7 @@
   border-radius: 0px 0px 6px 6px;
 }
 .selectedTab {
-  background: black !important;
+  background: #80878f !important;
 }
 .toDoSheet {
   height: 206px;
