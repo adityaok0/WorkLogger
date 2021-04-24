@@ -170,10 +170,13 @@ export function dragStoppedAction() {
     });
   };
 }
-export function resetSheetPosition() {
+export function resetSheetPosition(resetLocation) {
   return function (dispatch, getState) {
     dispatch({
       type: "RESET_SHEET_POSITION",
+      payload: {
+        resetLocation: resetLocation,
+      },
     });
   };
 }

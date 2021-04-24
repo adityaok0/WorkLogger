@@ -156,6 +156,7 @@ const TaskBoard = function TaskBoard() {
               index={toDoIndex}
               key={`toDo'${toDoIndex}`}
               moveToList={moveToList}
+              resetLocation={toDoRef}
             />
           ))}
         </div>
@@ -177,6 +178,7 @@ const TaskBoard = function TaskBoard() {
               index={inProgressIndex}
               key={`toDo'${inProgressIndex}`}
               moveToList={moveToList}
+              resetLocation={inProgressRef}
             />
           ))}
         </div>
@@ -198,6 +200,7 @@ const TaskBoard = function TaskBoard() {
               index={doneIndex}
               key={`toDo'${doneIndex}`}
               moveToList={moveToList}
+              resetLocation={doneRef}
             />
           ))}
         </div>
@@ -205,14 +208,19 @@ const TaskBoard = function TaskBoard() {
     </Row>
   );
 };
-const TaskSheet = function TaskSheet({ data, type, index, moveToList }) {
+const TaskSheet = function TaskSheet({
+  data,
+  type,
+  index,
+  moveToList,
+  resetLocation,
+}) {
   const dispatch = useDispatch();
   const taskSheetRef = createRef();
   useEffect(() => {
     return function () {
-      dispatch(resetSheetPosition());
+      dispatch(resetSheetPosition(resetLocation));
     };
-    console.log(taskSheetRef.current.getBoundingClientRect());
   }, []);
   const trackPos = (data) => {
     dispatch(setPosition(taskSheetRef.current.getBoundingClientRect()));

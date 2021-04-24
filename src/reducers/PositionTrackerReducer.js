@@ -38,7 +38,9 @@ const PositionTrackerReducer = (state = defaultState, action) => {
       return temp;
     }
     case "RESET_SHEET_POSITION": {
-      return defaultState;
+      let temp = { ...state };
+      temp.item = action.payload.resetLocation;
+      return temp;
     }
     default:
       return state;
