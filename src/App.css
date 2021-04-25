@@ -158,6 +158,12 @@
 .doneHeadingName {
   background: #2f80ed;
 }
+.toDoList:active,
+.inProgressList:active,
+.doneList:active {
+  z-index: 1000;
+  background: red;
+}
 .toDoContent,
 .inProgressContent,
 .doneContent {
@@ -166,6 +172,7 @@
   box-sizing: border-box;
   border-radius: 0px 0px 6px 6px;
   z-index: 2;
+  position: relative;
 }
 .selectedTab {
   background: #80878f !important;
@@ -178,6 +185,7 @@
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
   border-radius: 6px;
   z-index: 1000;
+  position: relative;
 }
 .toDoSheet:active {
   z-index: 100000;
