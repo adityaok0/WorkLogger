@@ -177,9 +177,10 @@
   box-sizing: border-box;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
   border-radius: 6px;
+  z-index: 1000;
 }
 .toDoSheet:active {
-  z-index: 10000;
+  z-index: 100000;
 }
 .taskName {
   font-style: normal;
