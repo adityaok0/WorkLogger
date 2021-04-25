@@ -8,7 +8,6 @@ const PositionTrackerReducer = (state = defaultState, action) => {
     case "SET_POSITION": {
       let temp = { ...state };
       temp.item = action.payload.data;
-      console.log(temp);
       return temp;
     }
     case "SET_DIMENSIONS": {

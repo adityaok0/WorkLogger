@@ -27,7 +27,7 @@ export function Analytics() {
   }
   return (
     <React.Fragment>
-      <Row className="h-100 m-0">
+      <Row className="h-100 mx-0 mb-5">
         <Col lg={3} xl={3} md={4} className="p-0">
           <SideBar />
         </Col>

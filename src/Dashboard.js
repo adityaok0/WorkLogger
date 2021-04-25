@@ -111,7 +111,6 @@ const TaskBoard = function TaskBoard() {
   const positionTrackerHighlight = useSelector(
     (state) => state.PositionTrackerReducer.highlight
   );
-  console.log(positionTrackerHighlight);
   const toDoRef = createRef();
   const inProgressRef = createRef();
   const doneRef = createRef();
@@ -144,7 +143,7 @@ const TaskBoard = function TaskBoard() {
           <p className="m-0">To Do</p>
         </div>
         <div
-          className={`toDoContent d-flex flex-column pb-3 ${
+          className={`toDoContent d-flex flex-column pb-3 mb-3 ${
             positionTrackerHighlight === "toDo" ? "selectedTab" : ""
           }`}
           ref={toDoRef}
@@ -166,7 +165,7 @@ const TaskBoard = function TaskBoard() {
           <p className="m-0">In-progress</p>
         </div>
         <div
-          className={`inProgressContent d-flex flex-column pb-3 ${
+          className={`inProgressContent d-flex flex-column pb-3 mb-3 ${
             positionTrackerHighlight === "inProgress" ? "selectedTab" : ""
           }`}
           ref={inProgressRef}
@@ -188,7 +187,7 @@ const TaskBoard = function TaskBoard() {
           <p className="m-0">Done</p>
         </div>
         <div
-          className={`doneContent d-flex flex-column pb-3 ${
+          className={`doneContent d-flex flex-column pb-3 mb-3 ${
             positionTrackerHighlight === "done" ? "selectedTab" : ""
           }`}
           ref={doneRef}
@@ -227,7 +226,6 @@ const TaskSheet = function TaskSheet({
     dispatch(dragSelectedHighlight(type));
   };
   const dragStarted = (type) => {
-    console.log("drag started");
     dispatch(dragSelectedHighlight(type));
   };
   const dragStopped = () => {

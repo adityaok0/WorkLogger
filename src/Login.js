@@ -19,9 +19,7 @@ export function Login() {
   }
   function authorizeUser(e) {
     e.preventDefault();
-    console.log(loginData);
     httpClient.post({ data: loginData }).then((res) => {
-      console.log(res.data);
       history.push("/dashboard");
     });
   }

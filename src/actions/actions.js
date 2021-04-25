@@ -31,6 +31,7 @@ export function setPosition(data) {
 }
 
 export function setDimensions(data) {
+  console.log(data);
   return function (dispatch, getState) {
     return dispatch({
       type: "SET_DIMENSIONS",
@@ -46,58 +47,101 @@ export function moveToListAction(type, index, data) {
     const toDoPos = getState().PositionTrackerReducer.listPos.toDo;
     const inProgressPos = getState().PositionTrackerReducer.listPos.inProgress;
     const donePos = getState().PositionTrackerReducer.listPos.done;
-    switch (type) {
-      case "toDo": {
-        console.log(itemPosition, inProgressPos.left);
-        console.log(itemPosition.left, inProgressPos.left);
-        if (itemPosition.left > inProgressPos.left) {
-          console.log("MOVE_TO_IN_PROGRESS_FROM_TO_DO");
-          dispatch({
-            type: "MOVE_TO_IN_PROGRESS_FROM_TO_DO",
-            payload: {
-              index: index,
-            },
-          });
+    if (window.innerWidth > 576) {
+      switch (type) {
+        case "toDo": {
+          if (itemPosition.left > inProgressPos.left) {
+            dispatch({
+              type: "MOVE_TO_IN_PROGRESS_FROM_TO_DO",
+              payload: {
+                index: index,
+              },
+            });
+          }
+          break;
         }
-        break;
-      }
-      case "inProgress": {
-        console.log(itemPosition.x, toDoPos.left, toDoPos.width);
-        if (itemPosition.left > donePos.left) {
-          console.log("MOVE_TO_DONE_FROM_IN_PROGRESS");
+        case "inProgress": {
+          if (itemPosition.left > donePos.left) {
+            dispatch({
+              type: "MOVE_TO_DONE_FROM_IN_PROGRESS",
+              payload: {
+                index: index,
+              },
+            });
+          } else if (itemPosition.right < toDoPos.right) {
+            dispatch({
+              type: "MOVE_TO_TO_DO_FROM_IN_PROGRESS",
+              payload: {
+                index: index,
+              },
+            });
+          }
 
-          dispatch({
-            type: "MOVE_TO_DONE_FROM_IN_PROGRESS",
-            payload: {
-              index: index,
-            },
-          });
-        } else if (itemPosition.right < toDoPos.right) {
-          console.log("MOVE_TO_TO_DO_FROM_IN_PROGRESS");
-          dispatch({
-            type: "MOVE_TO_TO_DO_FROM_IN_PROGRESS",
-            payload: {
-              index: index,
-            },
-          });
+          break;
         }
+        case "done": {
+          if (itemPosition.right < inProgressPos.right) {
+            dispatch({
+              type: "MOVE_TO_IN_PROGRESS_FROM_DONE",
+              payload: {
+                index: index,
+              },
+            });
+          }
+          break;
+        }
+        default:
+          break;
+      }
+    } else {
+      switch (type) {
+        case "toDo": {
+          console.log(itemPosition.top, inProgressPos.top);
+          if (itemPosition.top > inProgressPos.top) {
+            dispatch({
+              type: "MOVE_TO_IN_PROGRESS_FROM_TO_DO",
+              payload: {
+                index: index,
+              },
+            });
+          }
+          break;
+        }
+        case "inProgress": {
+          console.log(itemPosition.top, donePos.top);
+          if (itemPosition.top > donePos.top) {
+            dispatch({
+              type: "MOVE_TO_DONE_FROM_IN_PROGRESS",
+              payload: {
+                index: index,
+              },
+            });
+          } else if (itemPosition.bottom < toDoPos.bottom) {
+            dispatch({
+              type: "MOVE_TO_TO_DO_FROM_IN_PROGRESS",
+              payload: {
+                index: index,
+              },
+            });
+          }
 
-        break;
-      }
-      case "done": {
-        if (itemPosition.right < inProgressPos.right) {
-          console.log("MOVE_TO_IN_PROGRESS_FROM_DONE");
-          dispatch({
-            type: "MOVE_TO_IN_PROGRESS_FROM_DONE",
-            payload: {
-              index: index,
-            },
-          });
+          break;
         }
-        break;
+        case "done": {
+          console.log(itemPosition.bottom, inProgressPos.bottom);
+          if (itemPosition.bottom < inProgressPos.bottom) {
+            dispatch({
+              type: "MOVE_TO_IN_PROGRESS_FROM_DONE",
+              payload: {
+                index: index,
+              },
+            });
+          }
+          break;
+        }
+        default:
+          break;
       }
-      default:
-        break;
     }
 
     return dispatch({
@@ -114,52 +158,96 @@ export function dragSelectedHighlight(type) {
     const toDoPos = getState().PositionTrackerReducer.listPos.toDo;
     const inProgressPos = getState().PositionTrackerReducer.listPos.inProgress;
     const donePos = getState().PositionTrackerReducer.listPos.done;
-    switch (type) {
-      case "toDo": {
-        console.log("case");
-        console.log(itemPosition.x, toDoPos.left, toDoPos.width);
-        if (itemPosition.left > inProgressPos.left) {
-          dispatch({
-            type: "HIGHLIGHT_IN_PROGRESS",
-          });
-        } else {
-          dispatch({
-            type: "NO_HIGHLIGHT",
-          });
+    if (window.innerWidth > 576) {
+      switch (type) {
+        case "toDo": {
+          if (itemPosition.left > inProgressPos.left) {
+            dispatch({
+              type: "HIGHLIGHT_IN_PROGRESS",
+            });
+          } else {
+            dispatch({
+              type: "NO_HIGHLIGHT",
+            });
+          }
+          break;
         }
-        break;
-      }
-      case "inProgress": {
-        console.log(itemPosition.x, toDoPos.left, toDoPos.width);
-        if (itemPosition.left > donePos.left) {
-          dispatch({
-            type: "HIGHLIGHT_DONE",
-          });
-        } else if (itemPosition.right < toDoPos.right) {
-          dispatch({
-            type: "HIGHLIGHT_TO_DO",
-          });
-        } else {
-          dispatch({
-            type: "NO_HIGHLIGHT",
-          });
+        case "inProgress": {
+          if (itemPosition.left > donePos.left) {
+            dispatch({
+              type: "HIGHLIGHT_DONE",
+            });
+          } else if (itemPosition.right < toDoPos.right) {
+            dispatch({
+              type: "HIGHLIGHT_TO_DO",
+            });
+          } else {
+            dispatch({
+              type: "NO_HIGHLIGHT",
+            });
+          }
+          break;
         }
-        break;
-      }
-      case "done": {
-        if (itemPosition.right < inProgressPos.right) {
-          dispatch({
-            type: "HIGHLIGHT_IN_PROGRESS",
-          });
-        } else {
-          dispatch({
-            type: "NO_HIGHLIGHT",
-          });
+        case "done": {
+          if (itemPosition.right < inProgressPos.right) {
+            dispatch({
+              type: "HIGHLIGHT_IN_PROGRESS",
+            });
+          } else {
+            dispatch({
+              type: "NO_HIGHLIGHT",
+            });
+          }
+          break;
         }
-        break;
+        default:
+          break;
       }
-      default:
-        break;
+    } else {
+      switch (type) {
+        case "toDo": {
+          if (itemPosition.top > inProgressPos.top) {
+            dispatch({
+              type: "HIGHLIGHT_IN_PROGRESS",
+            });
+          } else {
+            dispatch({
+              type: "NO_HIGHLIGHT",
+            });
+          }
+          break;
+        }
+        case "inProgress": {
+          if (itemPosition.top > donePos.top) {
+            dispatch({
+              type: "HIGHLIGHT_DONE",
+            });
+          } else if (itemPosition.bottom < toDoPos.bottom) {
+            dispatch({
+              type: "HIGHLIGHT_TO_DO",
+            });
+          } else {
+            dispatch({
+              type: "NO_HIGHLIGHT",
+            });
+          }
+          break;
+        }
+        case "done": {
+          if (itemPosition.bottom < inProgressPos.bottom) {
+            dispatch({
+              type: "HIGHLIGHT_IN_PROGRESS",
+            });
+          } else {
+            dispatch({
+              type: "NO_HIGHLIGHT",
+            });
+          }
+          break;
+        }
+        default:
+          break;
+      }
     }
   };
 }
@@ -172,6 +260,7 @@ export function dragStoppedAction() {
 }
 export function resetSheetPosition(resetLocation) {
   return function (dispatch, getState) {
+    console.log("reset");
     dispatch({
       type: "RESET_SHEET_POSITION",
       payload: {
