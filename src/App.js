@@ -8,6 +8,9 @@ import { NewTask } from "./NewTask";
 import Draggable from "react-draggable";
 
 function App() {
+  window.onload = function () {
+    document.body.addEventListener("touchstart", function () {}, false);
+  };
   return (
     <div className="App">
       <Router>

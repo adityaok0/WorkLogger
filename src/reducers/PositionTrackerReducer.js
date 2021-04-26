@@ -2,6 +2,7 @@ let defaultState = {
   item: { left: 0 },
   listPos: {},
   highlight: "",
+  bottomDiv: "",
 };
 const PositionTrackerReducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -30,6 +31,26 @@ const PositionTrackerReducer = (state = defaultState, action) => {
       temp.highlight = "toDo";
       return temp;
     }
+    case "MAKE_IN_PROGRESS_BOTTOM": {
+      let temp = { ...state };
+      temp.bottomDiv = "inProgress";
+      return temp;
+    }
+    case "MAKE_DONE_BOTTOM": {
+      let temp = { ...state };
+      temp.bottomDiv = "done";
+      return temp;
+    }
+    case "MAKE_TO_DO_BOTTOM": {
+      let temp = { ...state };
+      temp.bottomDiv = "toDo";
+      return temp;
+    }
+    case "REMOVE_BOTTOM": {
+      let temp = { ...state };
+      temp.bottomDiv = "";
+      return temp;
+    }
     case "DRAG_STOPPED":
     case "NO_HIGHLIGHT": {
       let temp = { ...state };
@@ -39,6 +60,8 @@ const PositionTrackerReducer = (state = defaultState, action) => {
     case "RESET_SHEET_POSITION": {
       let temp = { ...state };
       temp.item = action.payload.resetLocation;
+      temp.highlight = "";
+      temp.bottomDiv = "";
       return temp;
     }
     default:

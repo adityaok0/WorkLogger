@@ -111,6 +111,9 @@ const TaskBoard = function TaskBoard() {
   const positionTrackerHighlight = useSelector(
     (state) => state.PositionTrackerReducer.highlight
   );
+  const bottomDiv = useSelector(
+    (state) => state.PositionTrackerReducer.bottomDiv
+  );
   const toDoRef = createRef();
   const inProgressRef = createRef();
   const doneRef = createRef();
@@ -138,7 +141,10 @@ const TaskBoard = function TaskBoard() {
   };
   return (
     <Row className="pt-3 m-0 taskBoard">
-      <Col sm={4} className="toDoList">
+      <Col
+        sm={4}
+        className={`toDoList ${bottomDiv === "toDo" ? "makeBottom" : ""}`}
+      >
         <div className="toDoHeadingName d-flex justify-content-center align-items-center">
           <p className="m-0">To Do</p>
         </div>
@@ -160,7 +166,12 @@ const TaskBoard = function TaskBoard() {
           ))}
         </div>
       </Col>
-      <Col sm={4} className="inProgressList">
+      <Col
+        sm={4}
+        className={`inProgressList ${
+          bottomDiv === "inProgress" ? "makeBottom" : ""
+        }`}
+      >
         <div className="inProgressHeadingName d-flex justify-content-center align-items-center">
           <p className="m-0">In-progress</p>
         </div>
@@ -182,7 +193,10 @@ const TaskBoard = function TaskBoard() {
           ))}
         </div>
       </Col>
-      <Col sm={4} className="doneList">
+      <Col
+        sm={4}
+        className={`doneList ${bottomDiv === "done" ? "makeBottom" : ""}`}
+      >
         <div className="doneHeadingName d-flex justify-content-center align-items-center">
           <p className="m-0">Done</p>
         </div>

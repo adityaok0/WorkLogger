@@ -31,7 +31,6 @@ export function setPosition(data) {
 }
 
 export function setDimensions(data) {
-  console.log(data);
   return function (dispatch, getState) {
     return dispatch({
       type: "SET_DIMENSIONS",
@@ -96,7 +95,6 @@ export function moveToListAction(type, index, data) {
     } else {
       switch (type) {
         case "toDo": {
-          console.log(itemPosition.top, inProgressPos.top);
           if (itemPosition.top > inProgressPos.top) {
             dispatch({
               type: "MOVE_TO_IN_PROGRESS_FROM_TO_DO",
@@ -108,7 +106,6 @@ export function moveToListAction(type, index, data) {
           break;
         }
         case "inProgress": {
-          console.log(itemPosition.top, donePos.top);
           if (itemPosition.top > donePos.top) {
             dispatch({
               type: "MOVE_TO_DONE_FROM_IN_PROGRESS",
@@ -128,7 +125,6 @@ export function moveToListAction(type, index, data) {
           break;
         }
         case "done": {
-          console.log(itemPosition.bottom, inProgressPos.bottom);
           if (itemPosition.bottom < inProgressPos.bottom) {
             dispatch({
               type: "MOVE_TO_IN_PROGRESS_FROM_DONE",
@@ -170,6 +166,15 @@ export function dragSelectedHighlight(type) {
               type: "NO_HIGHLIGHT",
             });
           }
+          if (itemPosition.right > inProgressPos.left) {
+            dispatch({
+              type: "MAKE_IN_PROGRESS_BOTTOM",
+            });
+          } else {
+            dispatch({
+              type: "REMOVE_BOTTOM",
+            });
+          }
           break;
         }
         case "inProgress": {
@@ -186,6 +191,19 @@ export function dragSelectedHighlight(type) {
               type: "NO_HIGHLIGHT",
             });
           }
+          if (itemPosition.right > donePos.left) {
+            dispatch({
+              type: "MAKE_DONE_BOTTOM",
+            });
+          } else if (itemPosition.left < toDoPos.right) {
+            dispatch({
+              type: "MAKE_TO_DO_BOTTOM",
+            });
+          } else {
+            dispatch({
+              type: "REMOVE_BOTTOM",
+            });
+          }
           break;
         }
         case "done": {
@@ -196,6 +214,15 @@ export function dragSelectedHighlight(type) {
           } else {
             dispatch({
               type: "NO_HIGHLIGHT",
+            });
+          }
+          if (itemPosition.left < inProgressPos.right) {
+            dispatch({
+              type: "MAKE_IN_PROGRESS_BOTTOM",
+            });
+          } else {
+            dispatch({
+              type: "REMOVE_BOTTOM",
             });
           }
           break;
@@ -215,6 +242,15 @@ export function dragSelectedHighlight(type) {
               type: "NO_HIGHLIGHT",
             });
           }
+          if (itemPosition.bottom > inProgressPos.top) {
+            dispatch({
+              type: "MAKE_IN_PROGRESS_BOTTOM",
+            });
+          } else {
+            dispatch({
+              type: "REMOVE_BOTTOM",
+            });
+          }
           break;
         }
         case "inProgress": {
@@ -231,6 +267,19 @@ export function dragSelectedHighlight(type) {
               type: "NO_HIGHLIGHT",
             });
           }
+          if (itemPosition.bottom > donePos.top) {
+            dispatch({
+              type: "MAKE_DONE_BOTTOM",
+            });
+          } else if (itemPosition.top < toDoPos.bottom) {
+            dispatch({
+              type: "MAKE_TO_DO_BOTTOM",
+            });
+          } else {
+            dispatch({
+              type: "REMOVE_BOTTOM",
+            });
+          }
           break;
         }
         case "done": {
@@ -241,6 +290,15 @@ export function dragSelectedHighlight(type) {
           } else {
             dispatch({
               type: "NO_HIGHLIGHT",
+            });
+          }
+          if (itemPosition.top < inProgressPos.bottom) {
+            dispatch({
+              type: "MAKE_IN_PROGRESS_BOTTOM",
+            });
+          } else {
+            dispatch({
+              type: "REMOVE_BOTTOM",
             });
           }
           break;
@@ -260,7 +318,6 @@ export function dragStoppedAction() {
 }
 export function resetSheetPosition(resetLocation) {
   return function (dispatch, getState) {
-    console.log("reset");
     dispatch({
       type: "RESET_SHEET_POSITION",
       payload: {
