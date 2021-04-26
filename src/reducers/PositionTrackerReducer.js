@@ -55,6 +55,7 @@ const PositionTrackerReducer = (state = defaultState, action) => {
     case "NO_HIGHLIGHT": {
       let temp = { ...state };
       temp.highlight = "";
+      temp.bottomDiv = "";
       return temp;
     }
     case "RESET_SHEET_POSITION": {

@@ -187,6 +187,9 @@
   pointer-events: auto;
   cursor: pointer;
 }
+.toDoSheet:active {
+  z-index: 1000;
+}
 .taskName {
   font-style: normal;
   font-weight: 600;
